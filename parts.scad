@@ -1,5 +1,7 @@
 /*
 	Parts – modules for keyboard switches, plate footprints, and other parts
+	
+	© 2018 Dale Price. This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
 */
 
 include <MCAD/shapes.scad>;

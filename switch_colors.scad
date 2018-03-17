@@ -1,5 +1,6 @@
 /*
 	Switch Colors – color definitions for most varieties of mechanical keyboard switches
+	© 2018 Dale Price. This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
 */
 
 // returns the color of the desired color from switchColors or a random color if the passed color name is not known or no color name is passed
