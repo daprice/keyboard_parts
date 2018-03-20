@@ -46,6 +46,7 @@ switchColors = [
 	["dark_yellow", rgb(220, 195, 62)],
 	["pale_blue", rgb(126, 148, 189)],
 	["burnt_orange", rgb(213, 100, 80)],
+	["royal", rgb(91, 71, 114)],
 	
 	// aliaz
 	["pink", rgb(213, 46, 130)],
