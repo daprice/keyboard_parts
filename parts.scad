@@ -81,12 +81,15 @@ module switch(type = "PG1350", center = true, pcbHeight = false, color=switchCol
 	center: (bool) whether or not to center the PCB in the x, y, and z axes
 	surfaceAtZero: (bool) whether to place the top surface of the PCB at y=0 (true) or at the height equal to the thickness of the PCB (or thickness/2 if centered) (false)
 	color: color of the PCB, takes any value supported by OpenSCAD's color() function (defaults to roughly the color of fr4)
+	outline: (bool) whether to generate the pcb in 2D (true) or 3D (false)
 */
-module pcb(size, thickness = 1.6, center = false, surfaceAtZero = false, color = [0.6, 0.75, 0.5]) {
+module pcb(size, thickness = 1.6, center = false, surfaceAtZero = false, color = [0.6, 0.75, 0.5], outline = false) {
 	translate( center ? [-size[0]/2, -size[1]/2, -thickness/2] : [0,0,0] )
-	translate( surfaceAtZero ? [0, 0, -thickness] : [0, 0, 0] )
 	translate( center && surfaceAtZero ? [0,0,thickness/2] : [0,0,0] ) {
-		color(color) cube([size[0], size[1], thickness]);
+		color(color) {
+			if(outline) square([size[0], size[1]]);
+			else translate( surfaceAtZero ? [0, 0, -thickness] : [0, 0, 0] ) cube([size[0], size[1], thickness]);
+		}
 	}
 }
 

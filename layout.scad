@@ -76,6 +76,17 @@ module layout_outline(r = 0, layout, colOffsets, tol = 0.05, center = false) {
 	}
 }
 
+// generates a PCB for the given layout with the given margins [top, right, bottom, left] in mm
+module pcb_for(layout, colOffsets, margins, thickness, center, centerOnLayout = false, surfaceAtZero, color, outline) {
+	size = getLayoutSize(layout, colOffsets);
+	sizeWithMargins = [
+		size[0] + margins[3] + margins[1],
+		size[1] + margins[0] + margins[2]
+	];
+	translate( centerOnLayout ? [(margins[1]-margins[3])/2, (margins[0] - margins[2])/2, 0] : [0,0,0] )
+		pcb(sizeWithMargins, thickness, center, surfaceAtZero, color, outline);
+}
+
 // centers its children in a space of the specified size in u
 module keySpace(w = 1, h = 1) {
 	translate(h > 1 ? [0, -h/2*u, 0] : [0,0,0]) {
