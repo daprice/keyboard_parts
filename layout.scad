@@ -77,7 +77,7 @@ module layout_outline(r = 0, layout, colOffsets, tol = 0.05, center = false) {
 }
 
 // generates a PCB for the given layout with the given margins [top, right, bottom, left] in mm
-module pcb_for(layout, colOffsets, margins, thickness, center, centerOnLayout = false, surfaceAtZero, color, outline) {
+module pcb_for(layout, colOffsets, margins, thickness = 1.6, center, centerOnLayout = false, surfaceAtZero, color, outline) {
 	size = getLayoutSize(layout, colOffsets);
 	sizeWithMargins = [
 		size[0] + margins[3] + margins[1],
