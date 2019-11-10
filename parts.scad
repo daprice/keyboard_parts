@@ -28,7 +28,7 @@ module switchPlateFootprint(type = "PG1350", center = false) {
 	w and h are expected in u, tol is in mm
 	supports any type supported by switchPlateFootprint or "outline" (a unit square intended for defining the cutout area of high profile cases)
 */
-module keyPlateFootprint(w = 1, h = 1, tol = 0, switchType) {
+module keyPlateFootprint(u = default_u, w = 1, h = 1, tol = 0, switchType) {
 	offset(r = tol) if (switchType == "outline") {
 		square([w*u[0], h*u[1]], center = true);
 	} else {
