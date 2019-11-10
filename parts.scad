@@ -30,7 +30,7 @@ module switchPlateFootprint(type = "PG1350", center = false) {
 */
 module keyPlateFootprint(w = 1, h = 1, tol = 0, switchType) {
 	offset(r = tol) if (switchType == "outline") {
-		square([w*u, h*u], center = true);
+		square([w*u[0], h*u[1]], center = true);
 	} else {
 		switchPlateFootprint(type = switchType, center = true);
 	}

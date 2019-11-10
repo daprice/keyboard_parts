@@ -14,7 +14,7 @@ include <util.scad>;
 		...
 	]
 	
-	* All values are in "u" (key width units)
+	* All values are in "u" (key size units). Set the variable `u` to an array of [width, height] when you call `layout` if you want to use a custom size.
 */
 example_key_layout = [
 	[1,    [[1,1], [1,1], [1,1]]],
@@ -89,8 +89,8 @@ module pcb_for(layout, colOffsets, margins, thickness, center, centerOnLayout = 
 
 // centers its children in a space of the specified size in u
 module keySpace(w = 1, h = 1) {
-	translate(h > 1 ? [0, -h/2*u, 0] : [0,0,0]) {
-		translate([w*u/2, h*u/2]) children();
+	translate(h > 1 ? [0, -h/2*u[1], 0] : [0,0,0]) {
+		translate([w*u[0]/2, h*u[1]/2]) children();
 	}
 }
 
@@ -98,15 +98,15 @@ module keySpace(w = 1, h = 1) {
 // example usage: keyPosition(example_key_layout, 0, 0, example_col_offsets) { switch(); }
 module keyPosition(layout, row, col, colOffsets) {
 	keyPos = getKeyPos(layout, row, col, colOffsets);
-	translate([keyPos[0]*u, -keyPos[1]*u, 0]) {
+	translate([keyPos[0]*u[0], -keyPos[1]*u[1], 0]) {
 		children();
 	}
 }
 
 // returns the overall [x, y] dimensions in mm of the given layout with the given column offsets
 function getLayoutSize(layout, colOffsets) = [
-	getKeyPos(layout, len(layout) - 1, len(layout[len(layout) - 1][1]) - 1, colOffsets)[0]*u + layout[len(layout) - 1][1][len(layout[len(layout) - 1][1]) - 1][0]*u,
-	(getRowY(layout, len(layout) - 1) + max(colOffsets)) * u
+	getKeyPos(layout, len(layout) - 1, len(layout[len(layout) - 1][1]) - 1, colOffsets)[0]*u[0] + layout[len(layout) - 1][1][len(layout[len(layout) - 1][1]) - 1][0]*u[0],
+	(getRowY(layout, len(layout) - 1) + max(colOffsets)) * u[1]
 ];
 
 // returns starting Y coordinate in u for a row in a layout
